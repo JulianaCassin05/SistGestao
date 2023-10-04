@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist de Peças para Conserto de Empilhadeira</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #itens {
+            margin-top: 20px;
+        }
+        #itens ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #itens li {
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+        }
+        #itens li label {
+            flex-grow: 1;
+        }
+        #itens li input[type="checkbox"] {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Checklist de Peças para Conserto de Empilhadeira</h1>
+        <form id="itemForm">
+            <label for="descricao">Descrição da Peça:</label>
+            <input type="text" id="descricao" name="descricao" required>
+
+            <button type="submit">Adicionar Peça</button>
+        </form>
+
+        <div id="itens">
+            <h2>Lista de Peças Necessárias</h2>
+            <ul id="listaItens">
+                <!-- Peças serão exibidas aqui -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Matriz para simular peças necessárias
+        const pecasNecessarias = [];
+
+        // Função para adicionar uma peça à matriz
+        function adicionarPeca(descricao) {
+            pecasNecessarias.push({ descricao, concluida: false });
+        }
+
+        // Função para exibir as peças na lista
+        function exibirPecas() {
+            const listaItens = document.getElementById("listaItens");
+            listaItens.innerHTML = '';
+
+            pecasNecessarias.forEach((peca, index) => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <input type="checkbox" id="checkbox${index}" ${peca.concluida ? 'checked' : ''}>
+                    <label for="checkbox${index}">${peca.descricao}</label>
+                `;
+
+                // Adicionar evento de clique para marcar como concluída/não concluída
+                listItem.querySelector(`#checkbox${index}`).addEventListener('change', () => {
+                    pecasNecessarias[index].concluida = !pecasNecessarias[index].concluida;
+                });
+
+                listaItens.appendChild(listItem);
+            });
+        }
+
+        // Manipulador de evento para o formulário de adicionar peça
+        document.getElementById("itemForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Coletar a descrição da peça do formulário
+            const descricao = document.getElementById("descricao").value;
+
+            // Adicionar a peça à matriz
+            adicionarPeca(descricao);
+
+            // Limpar o campo de descrição
+            document.getElementById("descricao").value = '';
+
+            // Exibir as peças atualizadas
+            exibirPecas();
+        });
+
+        // Exibir peças iniciais (se houver)
+        exibirPecas();
+    </script>
+</body>
+</html>
