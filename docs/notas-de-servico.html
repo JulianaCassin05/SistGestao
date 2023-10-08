@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas de Serviço</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Notas de Serviço</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="consulta-estoque.html">Consultar Estoque</a></li>
+            <li><a href="cadastro-peca.html">Cadastro de Peças Novas</a></li>
+            <li><a href="notas-de-servico.html">Notas de Serviço</a></li>
+            <li><a href="cadastro-cliente.html">Cadastro de Cliente</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Nota de Serviço #12345</h2>
+        
+        <section>
+            <h3>Informações do Cliente:</h3>
+            <form>
+                <label for="cliente"><strong>Cliente:</strong></label>
+                <input type="text" id="cliente" name="cliente">
+                <label for="endereco"><strong>Endereço:</strong></label>
+                <input type="text" id="endereco" name="endereco">
+                <label for="telefone"><strong>Telefone:</strong></label>
+                <input type="tel" id="telefone" name="telefone">
+                <label for="cpf_cnpj"><strong>CPF/CNPJ:</strong></label>
+                <input type="text" id="cpf_cnpj" name="cpf_cnpj">
+            </form>
+        </section>
+        
+        <section>
+            <h3>Detalhes do Serviço:</h3>
+            <form>
+                <label for="data"><strong>Data:</strong></label>
+                <input type="date" id="data" name="data" required>
+                <label for="horario"><strong>Horário:</strong></label>
+                <input type="text" id="horario" name="horario">
+                <label for="tecnico"><strong>Técnico:</strong></label>
+                <input type="text" id="tecnico" name="tecnico">
+            </form>
+        </section>
+        
+        <section>
+            <h3>Peças Utilizadas:</h3>
+            <form>
+                <ul id="pecas-list">
+                    <li><input type="text" name="peca1" placeholder="Descrição da Peça 1 (Quantidade: 2)"></li>
+                    <li><input type="text" name="peca2" placeholder="Descrição da Peça 2 (Quantidade: 1)"></li>
+                </ul>
+                <button type="button" id="adicionar-peca">Adicionar Peça</button>
+            </form>
+        </section>
+        
+        <section>
+            <h3>Custos e Preços:</h3>
+            <form>
+                <label for="valor_total"><strong>Valor Total:</strong></label>
+                <input type="text" id="valor_total" name="valor_total">
+                <label for="custos_adicionais"><strong>Custos Adicionais:</strong></label>
+                <input type="text" id="custos_adicionais" name="custos_adicionais">
+            </form>
+        </section>
+        
+        <section>
+            <h3>Observações:</h3>
+            <form>
+                <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+            </form>
+        </section>
+        
+        <section>
+            <h3>Assinaturas:</h3>
+            <form>
+                <label for="assinatura_cliente"><strong>Assinatura do Cliente:</strong></label>
+                <input type="text" id="assinatura_cliente" name="assinatura_cliente">
+                <label for="assinatura_tecnico"><strong>Assinatura do Técnico:</strong></label>
+                <input type="text" id="assinatura_tecnico" name="assinatura_tecnico">
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const pecasList = document.getElementById("pecas-list");
+            const adicionarPecaButton = document.getElementById("adicionar-peca");
+
+            adicionarPecaButton.addEventListener("click", function () {
+                const novaPeca = document.createElement("li");
+                novaPeca.innerHTML = `<input type="text" name="peca" placeholder="Descrição da Peça" required>`;
+                pecasList.appendChild(novaPeca);
+            });
+        });
+    </script>
+</body>
+</html>
