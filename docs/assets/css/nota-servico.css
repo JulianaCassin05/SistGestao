@@ -1,0 +1,12 @@
+#icone {
+    color: #ffc107;
+    display: inline-block;
+    
+}
+
+#icone:hover {        
+    background-color: rgb(123, 129, 129);
+    border-radius: 15px;
+  
+
+}
